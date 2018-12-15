@@ -16,7 +16,7 @@
 namespace CryptoNote {
 namespace parameters {
 
-const uint64_t DIFFICULTY_TARGET                             = 150; // seconds
+const uint64_t DIFFICULTY_TARGET                             = 30; // seconds
 
 const uint32_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
@@ -31,18 +31,18 @@ const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW             = 60;
 const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V3          = 11;
 
 // MONEY_SUPPLY - total number coins to be generated
-const uint64_t MONEY_SUPPLY                                  = UINT64_C(21000000000);
-const uint32_t ZAWY_DIFFICULTY_BLOCK_INDEX                   = 1;
+const uint64_t MONEY_SUPPLY                                  = UINT64_C(100000000000000);
+const uint32_t ZAWY_DIFFICULTY_BLOCK_INDEX                   = 187000;
 const size_t   ZAWY_DIFFICULTY_V2                            = 0;
 const uint8_t  ZAWY_DIFFICULTY_DIFFICULTY_BLOCK_VERSION      = 3;
 
-const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX                 = 1;
-const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V2              = 2;
-const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3              = 3;
+const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX                 = 620000;
+const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V2              = 700000;
+const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3              = 800000;
 
-const uint64_t LWMA_3_DIFFICULTY_BLOCK_INDEX                 = 1200000;
+const uint64_t LWMA_3_DIFFICULTY_BLOCK_INDEX                 = 2000000;
 
-const unsigned EMISSION_SPEED_FACTOR                         = 20;
+const unsigned EMISSION_SPEED_FACTOR                         = 25;
 static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
 /* Premine amount */
@@ -68,7 +68,7 @@ TurtleCoind --print-genesis-tx --genesis-block-reward-address TRTLv2Fyavy8CXG8BP
 * You should see your premine appear in the previously generated wallet.
 
 */
-const char     GENESIS_COINBASE_TX_HEX[]                     = "010a01ff0001ffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121011cf479bc3450b23288c1968afe14ce1ba4d0edfc98ab0999b745861918604610";
+const char     GENESIS_COINBASE_TX_HEX[]                     = "010a01ff0001ffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210166454aa9af19deae89f0e87da7a463d081aae590356d51f267ee1e47140337ec";
 static_assert(sizeof(GENESIS_COINBASE_TX_HEX)/sizeof(*GENESIS_COINBASE_TX_HEX) != 1, "GENESIS_COINBASE_TX_HEX must not be empty.");
 
 /* This is the unix timestamp of the first "mined" block (technically block 2, not the genesis block)
@@ -89,18 +89,18 @@ const uint64_t MINIMUM_FEE                                   = UINT64_C(10);
 
 /* This section defines our minimum and maximum mixin counts required for transactions */
 const uint64_t MINIMUM_MIXIN_V1                              = 0;
-const uint64_t MAXIMUM_MIXIN_V1                              = 3;
+const uint64_t MAXIMUM_MIXIN_V1                              = 100;
 
-const uint64_t MINIMUM_MIXIN_V2                              = 0;
-const uint64_t MAXIMUM_MIXIN_V2                              = 3;
+const uint64_t MINIMUM_MIXIN_V2                              = 7;
+const uint64_t MAXIMUM_MIXIN_V2                              = 7;
 
-const uint64_t MINIMUM_MIXIN_V3                              = 0;
+const uint64_t MINIMUM_MIXIN_V3                              = 3;
 const uint64_t MAXIMUM_MIXIN_V3                              = 3;
 
 /* The heights to activate the mixin limits at */
-const uint32_t MIXIN_LIMITS_V1_HEIGHT                        = 1;
-const uint32_t MIXIN_LIMITS_V2_HEIGHT                        = 1;
-const uint32_t MIXIN_LIMITS_V3_HEIGHT                        = 1;
+const uint32_t MIXIN_LIMITS_V1_HEIGHT                        = 440000;
+const uint32_t MIXIN_LIMITS_V2_HEIGHT                        = 620000;
+const uint32_t MIXIN_LIMITS_V3_HEIGHT                        = 800000;
 
 /* The mixin to use by default with zedwallet and turtle-service */
 /* DEFAULT_MIXIN_V0 is the mixin used before MIXIN_LIMITS_V1_HEIGHT is started */
@@ -150,7 +150,7 @@ const uint32_t KEY_IMAGE_CHECKING_BLOCK_INDEX                = 0;
 
 const uint32_t UPGRADE_HEIGHT_V2                             = 1;
 const uint32_t UPGRADE_HEIGHT_V3                             = 2;
-const uint32_t UPGRADE_HEIGHT_V4                             = 3; // Upgrade height for CN-Lite Variant 1 switch.
+const uint32_t UPGRADE_HEIGHT_V4                             = 350000; // Upgrade height for CN-Lite Variant 1 switch.
 const uint32_t UPGRADE_HEIGHT_CURRENT                        = UPGRADE_HEIGHT_V4;
 
 const unsigned UPGRADE_VOTING_THRESHOLD                      = 90;               // percent
@@ -177,7 +177,7 @@ const uint64_t FORK_HEIGHTS[] =
 };
 
 /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 0;
+const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX                 = 6;
 
 const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
@@ -218,9 +218,9 @@ const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  10000;  //by def
 const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  100;    //by default, blocks count in blocks downloading
 const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
 
-const int      P2P_DEFAULT_PORT                              =  45337;
-const int      RPC_DEFAULT_PORT                              =  45338;
-const int      SERVICE_DEFAULT_PORT                          =  8075;
+const int      P2P_DEFAULT_PORT                              =  11897;
+const int      RPC_DEFAULT_PORT                              =  11898;
+const int      SERVICE_DEFAULT_PORT                          =  8070;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
 const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
@@ -237,7 +237,7 @@ const uint8_t P2P_LITE_BLOCKS_PROPOGATION_VERSION            = 4;
 // warning messages that we need to upgrade our software.
 const uint8_t  P2P_UPGRADE_WINDOW                            = 2;
 
-const size_t   P2P_CONNECTION_MAX_WRITE_BUFFER_SIZE          = 64 * 1024 * 1024; // 32 MB
+const size_t   P2P_CONNECTION_MAX_WRITE_BUFFER_SIZE          = 32 * 1024 * 1024; // 32 MB
 const uint32_t P2P_DEFAULT_CONNECTIONS_COUNT                 = 8;
 const size_t   P2P_DEFAULT_WHITELIST_CONNECTIONS_PERCENT     = 70;
 const uint32_t P2P_DEFAULT_HANDSHAKE_INTERVAL                = 60;            // seconds
